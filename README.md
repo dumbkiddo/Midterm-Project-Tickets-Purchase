@@ -16,4 +16,5 @@
 
  SpringConfiguration used for connecting to database.
  NotificationEvent and handler used for outputting notification with purchase information.
+ SQL file is provide in recources folder.
  
