@@ -1,4 +1,4 @@
-# midterm
+# Midterm project with Spring - Cinema system
  This project implements a system for purchasing tickets to cinema.
  
  - Select a movie from the list fetched from database 
