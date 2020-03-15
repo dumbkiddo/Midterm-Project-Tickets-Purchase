@@ -14,6 +14,6 @@
 - PurchaseDAO - stores information on purchase (number of tickets,total price)
 - PurchaseCalculator - calculates the total purchase
 
-SpringConfiguration used for connecting to database
-NotificationEvent and handler used for outputting notification with purchase information
+ SpringConfiguration used for connecting to database.
+ NotificationEvent and handler used for outputting notification with purchase information.
  
