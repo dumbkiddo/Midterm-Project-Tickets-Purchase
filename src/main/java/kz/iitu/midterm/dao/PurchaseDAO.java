@@ -34,7 +34,7 @@ public class PurchaseDAO implements ApplicationEventPublisherAware {
         return jdbcTemplate.query(SQL_GET_ALL, new PurchaseMapper());
     }
 
-    public void update(PurchaseDAO purchase, Integer id, int amount, int total){
+    public void insertNotify(PurchaseDAO purchase, Integer id, int amount, int total){
         jdbcTemplate.update(SQL_INSERT, id, amount, total);
         this.eventPublisher.publishEvent(new NotificationEvent(this, purchase));
     }

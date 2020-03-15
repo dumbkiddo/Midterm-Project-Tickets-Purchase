@@ -49,7 +49,7 @@ public class Main {
             ticketNumber--;
         }
         //Notification with purchase info
-        purchase.update(purchase,1, ticketNum, totalPrice);
+        purchase.insertNotify(purchase,1, ticketNum, totalPrice);
         context.close();
     }
 }
