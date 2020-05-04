@@ -1,14 +1,14 @@
 # Added:
-# Spring Data JPA
-# REST Controllers 
+Spring Data JPA
+REST Controllers 
 -Movie,Ticket,Purchase and Client
-# Security Authorization
+Security Authorization
 - Authorize as admin
 Admin can add,edit delete data
 - Authorize as user
 User can view records
-# Lombok and Swagger2
-# Exception handling
+Lombok and Swagger2
+Exception handling
 ----------------------------------------------------------------------
 # Previous Description 
 Midterm project with Spring - Cinema system
