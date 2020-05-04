@@ -1,11 +1,17 @@
 # Added:
-Spring Data JPA
-REST Controllers 
-Security Authorization
-Lombok and Swagger2
-Exception handling
+# Spring Data JPA
+# REST Controllers 
+-Movie,Ticket,Purchase and Client
+# Security Authorization
+- Authorize as admin
+Admin can add,edit delete data
+- Authorize as user
+User can view records
+# Lombok and Swagger2
+# Exception handling
 ----------------------------------------------------------------------
-# Midterm project with Spring - Cinema system
+# Previous Description 
+Midterm project with Spring - Cinema system
  This project implements a system for purchasing tickets to cinema.
  
  - Select a movie from the list fetched from database 
