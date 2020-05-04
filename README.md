@@ -1,3 +1,10 @@
+# Added:
+Spring Data JPA
+REST Controllers 
+Security Authorization
+Lombok and Swagger2
+Exception handling
+----------------------------------------------------------------------
 # Midterm project with Spring - Cinema system
  This project implements a system for purchasing tickets to cinema.
  
