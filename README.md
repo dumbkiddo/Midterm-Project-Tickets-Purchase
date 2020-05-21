@@ -1,4 +1,12 @@
-# Added:
+Final project - Application for booking tickets to movies
+-- User Interface with HTML,CSS
+-- Swagger2 Documentation
+-- Users functionality : 1) Login and view movies 2) Place an order for movie tickets 3) Edit personal order details 
+-- Admin functionality : 1) Login and view,edit movies 2) View the orders placed by users 3) Add new movies
+
+----------------------------------------------------------------------
+
+# Endterm description
 -- Spring Data JPA
 -- REST Controllers 
 - Movie,Ticket,Purchase and Client
@@ -9,8 +17,9 @@ Admin can add,edit delete data
 User can view records
 -- Lombok and Swagger2
 -- Exception handling
+
 ----------------------------------------------------------------------
-# Previous Description 
+# Midterm Description 
 Midterm project with Spring - Cinema system
  This project implements a system for purchasing tickets to cinema.
  
