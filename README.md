@@ -1,4 +1,4 @@
-Final project - Application for booking tickets to movies
+# Final project - Application for booking tickets to movies
 -- User Interface with HTML,CSS
 -- Swagger2 Documentation
 -- Users functionality : 1) Login and view movies 2) Place an order for movie tickets 3) Edit personal order details 
