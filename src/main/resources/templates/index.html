@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Movie Tickets</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}" />
+</head>
+<body>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/_menu"></th:block>
+
+<div class="page-title">Welcome to the home page!</div>
+<div class="demo-container">
+    <h3>If you want to proceed, please sign in.</h3>
+    <ul>
+        <li>User activities:</li>
+        <li>- View available movies</li>
+        <li>- Place orders for movie tickets</li>
+        <li>- Update personal order details</li>
+    </ul>
+    <ul>
+        <li>Administrator activities:</li>
+        <li>- View and edit movies</li>
+        <li>- Add new movies  </li>
+        <li>- View orders placed by users </li>
+    </ul>
+</div>
+
+
+
+</body>
+</html>

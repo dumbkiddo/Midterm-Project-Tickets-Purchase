@@ -1,64 +1,46 @@
 package kz.iitu.midterm.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.persistence.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "movies")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "Movies")
 public class Movie implements Serializable {
 
+    private static final long serialVersionUID = -1000119078147252957L;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "Code", length = 20, nullable = false)
+    private String code;
 
-    private String title;
-    private String genre;
+    @Column(name = "Name", length = 255, nullable = false)
+    private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "purchase_id", nullable = false)
-    @JsonIgnore
-    private Purchase purchase;
+    @Column(name = "Price", nullable = false)
+    private double price;
 
-    public Movie() {
-    }
+    @Lob
+    @Column(name = "Image", length = Integer.MAX_VALUE, nullable = true)
+    private byte[] image;
 
-    public Movie(String title, String genre, Purchase purchase) {
-        this.title=title;
-        this.genre = genre;
-        this.purchase = purchase;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    public Purchase getPurchase() {
-        return purchase;
-    }
-
-    public void setPurchase(Purchase purchase) {
-        this.purchase = purchase;
-    }
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "Create_Date", nullable = false)
+    private Date createDate;
 
 }

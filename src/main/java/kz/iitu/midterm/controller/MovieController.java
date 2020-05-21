@@ -3,48 +3,101 @@ package kz.iitu.midterm.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import kz.iitu.midterm.entity.Movie;
-import kz.iitu.midterm.repository.MovieRepository;
+import kz.iitu.midterm.model.CartInfo;
+import kz.iitu.midterm.model.MovieInfo;
+import kz.iitu.midterm.pagination.PaginationResult;
+import kz.iitu.midterm.repository.MovieRepo;
+import kz.iitu.midterm.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Optional;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-@RestController
-@RequestMapping(path = "/movie")
-@Api(value = "Movie Controller class", description = "This class is used for editing accessing and editing movie details")
+@Controller
+@Transactional
+@Api(value = "Movie Controller class", description = "This class allows to control the data flow of movies section")
 public class MovieController {
 
     @Autowired
-    private MovieRepository repository;
+    private MovieRepo movieRepo;
 
+    @ApiOperation(value = "Viewing list of movies on different pages ", response = String.class)
+    @RequestMapping({ "/movieList" })
+    public String listProductHandler(Model model, //
+                                     @RequestParam(value = "name", defaultValue = "") String likeName,
+                                     @RequestParam(value = "page", defaultValue = "1") int page) {
+        final int maxResult = 5;
+        final int maxNavigationPage = 10;
 
-    @ApiOperation(value = "Method for adding new movies into database")
-    @PostMapping("/add")
-    public Movie addMovie(@RequestBody Movie movie) {
-        return repository.save(movie);
+        PaginationResult<MovieInfo> result = movieRepo.queryMovies(page, //
+                maxResult, maxNavigationPage, likeName);
+
+        model.addAttribute("paginationProducts", result);
+        return "movieList";
     }
 
-    @ApiOperation(value = "List all available movies ")
-    @GetMapping("/all")
-    public Iterable<Movie> allMovies() {
-        return repository.findAll();
+    @ApiOperation(value = " View the ordered movie", response = String.class)
+    @RequestMapping({ "/buyProduct" })
+    public String listProductHandler(HttpServletRequest request, Model model, //
+                                     @RequestParam(value = "code", defaultValue = "") String code) {
+
+        Movie movie = null;
+        if (code != null && code.length() > 0) {
+            movie = movieRepo.findMovie(code);
+        }
+        if (movie != null) {
+
+            //
+            CartInfo cartInfo = Session.getCartInSession(request);
+
+            MovieInfo movieInfo = new MovieInfo(movie);
+
+            cartInfo.addMovie(movieInfo, 1);
+        }
+
+        return "redirect:/shoppingCart";
     }
 
-    @ApiOperation(value = "Find particular movie by ID")
-    @GetMapping("/{id}")
-    public Optional<Movie> moviebyId(@PathVariable("id") Long id) {
-        return repository.findById(id);
+    @ApiOperation(value = "Remove an order", response = String.class)
+    @RequestMapping({ "/shoppingCartRemoveProduct" })
+    public String removeProductHandler(HttpServletRequest request, Model model, //
+                                       @RequestParam(value = "code", defaultValue = "") String code) {
+        Movie movie = null;
+        if (code != null && code.length() > 0) {
+            movie = movieRepo.findMovie(code);
+        }
+        if (movie != null) {
+
+            CartInfo cartInfo = Session.getCartInSession(request);
+
+            MovieInfo movieInfo = new MovieInfo(movie);
+
+            cartInfo.removeMovie(movieInfo);
+
+        }
+
+        return "redirect:/shoppingCart";
     }
 
-    @ApiOperation(value = "Edit/update movie details")
-    @PutMapping("/update")
-    public Movie updateMovie(@RequestBody Movie movie) {
-        return repository.save(movie);
-    }
-
-    @ApiOperation(value = "Delete movie by ID")
-    @DeleteMapping("/{id}")
-    public void deleteMovie(@PathVariable("id") Long id) {
-        repository.deleteById(id);
+    @ApiOperation(value = " [GET] - View of the movie image", response = String.class)
+    @RequestMapping(value = { "/productImage" }, method = RequestMethod.GET)
+    public void productImage(HttpServletRequest request, HttpServletResponse response, Model model,
+                             @RequestParam("code") String code) throws IOException {
+        Movie movie = null;
+        if (code != null) {
+            movie = this.movieRepo.findMovie(code);
+        }
+        if (movie != null && movie.getImage() != null) {
+            response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+            response.getOutputStream().write(movie.getImage());
+        }
+        response.getOutputStream().close();
     }
 }

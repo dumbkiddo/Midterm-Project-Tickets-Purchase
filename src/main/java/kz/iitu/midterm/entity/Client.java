@@ -1,9 +1,15 @@
 package kz.iitu.midterm.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
-
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "client")
 public class Client {
@@ -39,40 +45,4 @@ public class Client {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-
-    public List<Ticket> getTickets() {
-        return tickets;
-    }
-
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
-    }
-
-//    public void addTicket(Ticket ticket) {
-//        if (tickets == null)
-//            tickets = new ArrayList<>();
-//
-//        tickets.add(ticket);
-//    }
-//
-//    public void removeTicket(Ticket ticket) {
-//        getTickets().remove(ticket);
-//        ticket.setClients(null);
-//    }
 }
