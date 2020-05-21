@@ -1,8 +1,30 @@
 # Final project - Application for booking tickets to movies
--- User Interface with HTML,CSS
--- Swagger2 Documentation
--- Users functionality : 1) Login and view movies 2) Place an order for movie tickets 3) Edit personal order details 
--- Admin functionality : 1) Login and view,edit movies 2) View the orders placed by users 3) Add new movies
+* Implemented
+  * User Interface with HTML,CSS
+  * Swagger2 Documentation
+
+# Description
+-- Users functionality : 
+1. Login and view movies 
+2. Place an order for movie tickets 
+3. Edit personal order details 
+
+-- Admin functionality : 
+1. Login and view,edit movies 
+2. View the orders placed by users 
+3. Add and edit new movies
+
+# Pages
+1. localhost:8080/ - **Main page** 
+2. localhost:8080/login - **Login page** 
+3. localhost:8080/movieList - - **List of available movies** 
+4. localhost:8080/shoppingCart - **Cart for ordering tickets** 
+5. localhost:8080/shoppingCartCustomer - **Adding or edition order information** 
+6. localhost:8080/admin/orderList - **View the orders**  - *Only for admins*
+7. localhost:8080/admin/movie - **Add or edit movies**  - *Only for admins*
+
+# Project UML diagram with main entities
+![Project UML diagram with main entities](https://github.com/dumbkiddo/Midterm-Project-Tickets-Purchase/blob/master/JAVA2%20FINAL.png)
 
 ----------------------------------------------------------------------
 
